@@ -1,18 +1,19 @@
 import { Dispatch, FC } from "react";
+
 import {
   Drawer,
   List,
   Divider,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   makeStyles,
   IconButton,
   useTheme,
   Theme,
   createStyles,
 } from "@material-ui/core";
-import { ChevronLeft, ChevronRight, Inbox, Mail } from "@material-ui/icons";
+
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+import { NormListItem } from "./NormListItem";
+import { NestedListItem } from "./NestedListItem";
 
 const drawerWidth = 240;
 
@@ -49,6 +50,9 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginRight: 0,
     },
+    nested: {
+      paddingLeft: theme.spacing(4),
+    },
   })
 );
 
@@ -79,26 +83,29 @@ export const SideDrawer: FC<Props> = ({ open, setOpen }) => {
         </IconButton>
       </div>
       <Divider />
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <Inbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <Inbox /> : <Mail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+
+      <List component="nav" aria-labelledby="nested-list-subheader">
+        <NormListItem name="Home" path="/" />
+        <NormListItem name="Winter Collection" path="wintercollection" />
+        <NormListItem name="Summer Collection" path="summercollection" />
+        <NestedListItem
+          name="Men"
+          nestedOpts={[
+            { name: "Jackets", path: "men/jackets" },
+            { name: "Shirts", path: "men/shirts" },
+            { name: "Shorts", path: "men/shorts" },
+            { name: "Hoodies", path: "men/hoodies" },
+          ]}
+        />
+        <NestedListItem
+          name="Women"
+          nestedOpts={[
+            { name: "Jackets", path: "women/jackets" },
+            { name: "Shirts", path: "women/shirts" },
+            { name: "Shorts", path: "women/shorts" },
+            { name: "Hoodies", path: "women/hoodies" },
+          ]}
+        />
       </List>
     </Drawer>
   );
