@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import {
@@ -7,6 +7,7 @@ import {
   CssBaseline,
   Typography,
   IconButton,
+  useScrollTrigger,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { SideDrawer } from "./SideDrawer";
@@ -43,8 +44,14 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const Header = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
+  const [show, setShow] = useState(false);
+  const scrollTrigger = useScrollTrigger();
+
+  useEffect(() => {
+    setShow(scrollTrigger);
+  }, [scrollTrigger]);
 
   return (
     <div className={classes.root}>
@@ -54,6 +61,7 @@ export const Header = () => {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        color={show ? "primary" : "transparent"}
         elevation={0}
       >
         <Toolbar variant="dense">
