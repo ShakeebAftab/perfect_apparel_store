@@ -12,7 +12,6 @@ import {
 } from "@material-ui/core";
 
 import { ChevronLeft, ChevronRight } from "@material-ui/icons";
-import { NormListItem } from "./NormListItem";
 import { NestedListItem } from "./NestedListItem";
 
 const drawerWidth = 240;
@@ -85,9 +84,9 @@ export const SideDrawer: FC<Props> = ({ open, setOpen }) => {
       <Divider />
 
       <List component="nav" aria-labelledby="nested-list-subheader">
-        <NormListItem name="Home" path="/" />
-        <NormListItem name="Winter Collection" path="wintercollection" />
-        <NormListItem name="Summer Collection" path="summercollection" />
+        <NestedListItem name="Home" path="/" />
+        <NestedListItem name="Winter Collection" path="wintercollection" />
+        <NestedListItem name="Summer Collection" path="summercollection" />
         <NestedListItem
           name="Men"
           nestedOpts={[

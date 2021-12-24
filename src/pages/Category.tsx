@@ -1,5 +1,5 @@
 import { Box, Grid } from "@material-ui/core";
-import { Header } from "../components/Header";
+import { Header } from "../components/Header/Header";
 
 export const Category = () => {
   return (
