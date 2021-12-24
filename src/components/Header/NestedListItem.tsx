@@ -6,10 +6,8 @@ import {
   ListItemIcon,
   ListItemText,
   makeStyles,
-  SvgIconTypeMap,
   Theme,
 } from "@material-ui/core";
-import { OverridableComponent } from "@material-ui/core/OverridableComponent";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import { FC } from "react";
 import { useState } from "react";
@@ -24,10 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface Props {
-  name: string;
-  Icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-  path?: string;
+interface Props extends MenuOpt {
   nestedOpts?: MenuOpt[];
 }
 
