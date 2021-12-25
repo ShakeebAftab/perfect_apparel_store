@@ -8,7 +8,7 @@ import {
   Typography,
   IconButton,
 } from "@material-ui/core";
-import { Menu } from "@material-ui/icons";
+import { Menu, ShoppingCartOutlined } from "@material-ui/icons";
 import { SideDrawer } from "./SideDrawer";
 
 const drawerWidth = 240;
@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     hide: {
       display: "none",
+    },
+    iconButton: {
+      marginLeft: "2px",
+      marginRight: "2px",
     },
   })
 );
@@ -67,12 +71,15 @@ export const Header = () => {
           <Typography variant="h6" noWrap className={classes.title}>
             Perfect Apparel
           </Typography>
+          <IconButton color="inherit" edge="end" className={classes.iconButton}>
+            <ShoppingCartOutlined />
+          </IconButton>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
-            className={clsx(open && classes.hide)}
+            className={clsx(classes.iconButton, open && classes.hide)}
           >
             <Menu />
           </IconButton>
