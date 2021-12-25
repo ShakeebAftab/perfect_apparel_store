@@ -32,16 +32,42 @@ const useStyles = makeStyles({
   },
 });
 
-export const ProductCard: FC<ProductCardType> = ({ title, img, price }) => {
+interface Props extends ProductCardType {
+  margin?: string;
+  width?: string;
+  marginTop?: string;
+  marginBottom?: string;
+  height?: string;
+}
+
+export const ProductCard: FC<Props> = ({
+  title,
+  img,
+  price,
+  margin,
+  width,
+  marginTop,
+  marginBottom,
+  height,
+}) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classes.root}
+      style={{
+        margin: margin ? margin : "30px",
+        minWidth: width ? width : "250px",
+        maxWidth: width ? width : "250px",
+        marginTop: marginTop ? marginTop : "5px",
+        marginBottom: marginBottom ? marginBottom : "5px",
+      }}
+    >
       <CardActionArea>
         <CardMedia
           component="img"
           alt={`${title} image`}
-          height="300px"
+          height={height ? height : "300px"}
           image={img}
           title={title}
         />
