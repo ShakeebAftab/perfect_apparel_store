@@ -6,3 +6,15 @@ export interface MenuOpt {
   Icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
   path?: string;
 }
+
+export interface BannerType {
+  title: string;
+  desc: string;
+  img: string;
+}
+
+export interface HomeCardType {
+  category: string;
+  img: string;
+  path: string;
+}
