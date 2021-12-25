@@ -1,9 +1,13 @@
+import { FC } from "react";
 import Carousel from "react-material-ui-carousel";
 import { BannerType } from "../types";
 import { Banner } from "./Banner";
-import { bannerData } from "./data.testData";
 
-export const Slider = () => {
+interface Props {
+  bannerData: BannerType[];
+}
+
+export const Slider: FC<Props> = ({ bannerData }) => {
   return (
     <Carousel
       indicators={false}
