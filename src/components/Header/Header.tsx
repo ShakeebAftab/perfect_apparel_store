@@ -7,7 +7,6 @@ import {
   CssBaseline,
   Typography,
   IconButton,
-  useScrollTrigger,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { SideDrawer } from "./SideDrawer";
@@ -47,11 +46,11 @@ export const Header = () => {
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
   const [show, setShow] = useState(false);
-  const scrollTrigger = useScrollTrigger();
 
   useEffect(() => {
-    setShow(scrollTrigger);
-  }, [scrollTrigger]);
+    window.addEventListener("scroll", () => setShow(window.scrollY > 100));
+    return window.removeEventListener("scroll", () => {});
+  }, []);
 
   return (
     <div className={classes.root}>
