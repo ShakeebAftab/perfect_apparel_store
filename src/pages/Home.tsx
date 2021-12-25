@@ -5,6 +5,7 @@ import { homeCardData } from "src/components/HomeCard.testData";
 import { Slider } from "../components/Banner/Slider";
 import { Header } from "../components/Header/Header";
 import { HomeCardType } from "src/components/types";
+import { ProductRow } from "src/components/ProductRow";
 
 const useStyles = makeStyles((theme: Theme) => ({
   slider: {
@@ -48,6 +49,9 @@ export const Home = () => {
               <HomeCard category={category} img={img} path={path} />
             </Grid>
           ))}
+        </Grid>
+        <Grid item xs={12}>
+          <ProductRow title="Our Top Products" />
         </Grid>
       </Grid>
     </Box>

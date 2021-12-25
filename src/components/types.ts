@@ -18,3 +18,9 @@ export interface HomeCardType {
   img: string;
   path: string;
 }
+
+export interface ProductCardType {
+  title: string;
+  img: string;
+  price: number;
+}
