@@ -1,5 +1,13 @@
 import { createTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
-import { createContext, Dispatch, FC, SetStateAction, useState } from "react";
+import { yellow } from "@material-ui/core/colors";
+import {
+  createContext,
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  useState,
+} from "react";
 import { BrowserRouter } from "react-router-dom";
 
 interface ContextProps {
@@ -7,9 +15,13 @@ interface ContextProps {
   setIsDark: Dispatch<SetStateAction<boolean>>;
 }
 
+interface Props {
+  children: ReactNode;
+}
+
 export const ThemeContext = createContext<ContextProps>({} as ContextProps);
 
-export const ThemeContextProvider: FC<any> = ({ children }) => {
+export const ThemeContextProvider: FC<Props> = ({ children }) => {
   const [isDark, setIsDark] = useState(true);
 
   const darkTheme = createTheme({
@@ -18,8 +30,8 @@ export const ThemeContextProvider: FC<any> = ({ children }) => {
       primary: {
         main: "#171717",
       },
-      background: {
-        // default: "#111",
+      secondary: {
+        main: yellow[700],
       },
     },
     overrides: {
