@@ -12,15 +12,9 @@ import {
   Box,
 } from "@material-ui/core";
 
-import {
-  ChevronLeft,
-  ChevronRight,
-  Facebook,
-  Instagram,
-  Twitter,
-  WhatsApp,
-} from "@material-ui/icons";
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import { NestedListItem } from "./NestedListItem";
+import { SocialMedia } from "../SocialMedia";
 
 const drawerWidth = 240;
 
@@ -122,20 +116,7 @@ export const SideDrawer: FC<Props> = ({ open, setOpen }) => {
       </List>
       <Box className={classes.drawerFooter}>
         <Divider />
-        <Box p="15px" overflow="hidden">
-          <IconButton>
-            <Facebook />
-          </IconButton>
-          <IconButton>
-            <Instagram />
-          </IconButton>
-          <IconButton>
-            <Twitter />
-          </IconButton>
-          <IconButton>
-            <WhatsApp />
-          </IconButton>
-        </Box>
+        <SocialMedia />
       </Box>
     </Drawer>
   );
