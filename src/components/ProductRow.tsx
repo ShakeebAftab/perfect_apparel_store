@@ -23,25 +23,35 @@ const useStyles = makeStyles({
 });
 
 interface Props {
-  title: string;
+  title?: string;
 }
 
 export const ProductRow: FC<Props> = ({ title }) => {
   const classes = useStyles();
   return (
     <Box display="flex" flexDirection="column">
-      <Typography
-        variant="h4"
-        component="h2"
-        color="textPrimary"
-        className={classes.title}
-      >
-        {title}
-      </Typography>
+      {title && (
+        <Typography
+          variant="h4"
+          component="h2"
+          color="textPrimary"
+          className={classes.title}
+        >
+          {title}
+        </Typography>
+      )}
       <Box className={classes.products}>
-        {productCardData.map(({ title, img, price }: ProductCardType) => (
-          <ProductCard title={title} img={img} price={price} />
-        ))}
+        {productCardData.map(
+          ({ title, img, price }: ProductCardType, idx: number) => (
+            <ProductCard
+              key={`${idx}`}
+              title={title}
+              img={img}
+              price={price}
+              margin="15px"
+            />
+          )
+        )}
       </Box>
     </Box>
   );
