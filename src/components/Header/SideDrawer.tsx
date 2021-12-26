@@ -9,9 +9,17 @@ import {
   useTheme,
   Theme,
   createStyles,
+  Box,
 } from "@material-ui/core";
 
-import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Facebook,
+  Instagram,
+  Twitter,
+  WhatsApp,
+} from "@material-ui/icons";
 import { NestedListItem } from "./NestedListItem";
 
 const drawerWidth = 240;
@@ -24,6 +32,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      "&::-webkit-scrollbar": {
+        display: "none",
+      },
     },
     drawerHeader: {
       display: "flex",
@@ -51,6 +62,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     nested: {
       paddingLeft: theme.spacing(4),
+    },
+    drawerFooter: {
+      marginTop: "auto",
     },
   })
 );
@@ -106,6 +120,23 @@ export const SideDrawer: FC<Props> = ({ open, setOpen }) => {
           ]}
         />
       </List>
+      <Box className={classes.drawerFooter}>
+        <Divider />
+        <Box p="15px" overflow="hidden">
+          <IconButton>
+            <Facebook />
+          </IconButton>
+          <IconButton>
+            <Instagram />
+          </IconButton>
+          <IconButton>
+            <Twitter />
+          </IconButton>
+          <IconButton>
+            <WhatsApp />
+          </IconButton>
+        </Box>
+      </Box>
     </Drawer>
   );
 };
