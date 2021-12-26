@@ -42,9 +42,6 @@ export const Home = () => {
           </Grid>
         ))}
         <Grid item xs={12}>
-          <ProductRow />
-        </Grid>
-        <Grid item xs={12}>
           <HomeBanner
             img="https://images.unsplash.com/photo-1472806426350-603610d85659?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
             height="300px"
@@ -55,6 +52,9 @@ export const Home = () => {
             buttonOneOnClick={() => {}}
             buttonTwoOnClick={() => {}}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <ProductRow />
         </Grid>
         <Grid item xs={12}>
           <Footer />
