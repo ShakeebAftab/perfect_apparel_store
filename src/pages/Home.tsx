@@ -51,6 +51,8 @@ export const Home = () => {
             tagline="Shop for men and women"
             buttonOneText="Shop for men"
             buttonTwoText="Shop for women"
+            buttonOneOnClick={() => {}}
+            buttonTwoOnClick={() => {}}
           />
         </Grid>
       </Grid>

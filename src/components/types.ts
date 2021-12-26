@@ -30,8 +30,8 @@ export interface HomeBannerType {
   title: string;
   tagline: string;
   height: string;
-  buttonOneText?: string;
-  buttonTwoText?: string;
-  buttonOneOnClick?: () => void;
-  buttonTwoOnClick?: () => void;
+  buttonOneText: string;
+  buttonTwoText: string;
+  buttonOneOnClick: () => void;
+  buttonTwoOnClick: () => void;
 }
