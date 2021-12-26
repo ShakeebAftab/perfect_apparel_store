@@ -8,6 +8,7 @@ import { HomeCardType } from "src/components/types";
 import { ProductRow } from "src/components/ProductRow";
 import { bannerData } from "src/components/Banner/data.testData";
 import { HomeBanner } from "src/components/HomeBanner";
+import { Footer } from "src/components/Footer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   slider: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const Home = () => {
   const classes = useStyles();
   return (
-    <Box overflow="hidden" mb="10px">
+    <Box overflow="hidden">
       <Grid container spacing={0} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Header />
@@ -41,7 +42,7 @@ export const Home = () => {
           </Grid>
         ))}
         <Grid item xs={12}>
-          <ProductRow title="Our Top Products" />
+          <ProductRow />
         </Grid>
         <Grid item xs={12}>
           <HomeBanner
@@ -54,6 +55,9 @@ export const Home = () => {
             buttonOneOnClick={() => {}}
             buttonTwoOnClick={() => {}}
           />
+        </Grid>
+        <Grid item xs={12}>
+          <Footer />
         </Grid>
       </Grid>
     </Box>
