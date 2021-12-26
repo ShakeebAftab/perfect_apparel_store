@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       "&::-webkit-scrollbar": {
         display: "none",
       },
+      background: "#171717",
     },
     drawerHeader: {
       display: "flex",
