@@ -43,7 +43,6 @@ export const Banner: FC<BannerType> = ({ title, desc, img }) => {
       overflow="hidden"
       minHeight="80vh"
       maxHeight="80vh"
-      marginBottom="20px"
       style={{
         background: `url(${img})`,
         backgroundSize: "cover",
