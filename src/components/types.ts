@@ -24,3 +24,14 @@ export interface ProductCardType {
   img: string;
   price: number;
 }
+
+export interface HomeBannerType {
+  img: string;
+  title: string;
+  tagline: string;
+  height: string;
+  buttonOneText?: string;
+  buttonTwoText?: string;
+  buttonOneOnClick?: () => void;
+  buttonTwoOnClick?: () => void;
+}
