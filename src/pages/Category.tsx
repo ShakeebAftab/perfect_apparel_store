@@ -13,7 +13,7 @@ export const Category = () => {
   }, []);
 
   return (
-    <Box overflow="hidden">
+    <Box overflow="hidden" mb="10px">
       <Grid container>
         <Grid item xs={12}>
           <Header />
