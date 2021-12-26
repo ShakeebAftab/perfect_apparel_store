@@ -35,3 +35,8 @@ export interface HomeBannerType {
   buttonOneOnClick: () => void;
   buttonTwoOnClick: () => void;
 }
+
+export interface SelectorOptions {
+  name?: string;
+  options: string[];
+}

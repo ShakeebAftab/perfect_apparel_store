@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import clsx from "clsx";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import {
@@ -8,8 +8,9 @@ import {
   Typography,
   IconButton,
 } from "@material-ui/core";
-import { Menu, ShoppingCartOutlined } from "@material-ui/icons";
+import { LineStyle, Menu, ShoppingCartOutlined } from "@material-ui/icons";
 import { SideDrawer } from "./SideDrawer";
+import { FilterDrawer } from "./FilterDrawer";
 
 const drawerWidth = 240;
 
@@ -45,11 +46,16 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Header = () => {
+interface Props {
+  categoryPage?: boolean;
+}
+
+export const Header: FC<Props> = ({ categoryPage }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
   const [show, setShow] = useState(false);
+  const [filterDrawer, setFilterDrawer] = useState(false);
 
   useEffect(() => {
     window.addEventListener("scroll", () => setShow(window.scrollY > 100));
@@ -71,6 +77,16 @@ export const Header = () => {
           <Typography variant="h6" noWrap className={classes.title}>
             Perfect Apparel
           </Typography>
+          {categoryPage && (
+            <IconButton
+              color="inherit"
+              edge="end"
+              className={classes.iconButton}
+              onClick={() => setFilterDrawer(true)}
+            >
+              <LineStyle />
+            </IconButton>
+          )}
           <IconButton color="inherit" edge="end" className={classes.iconButton}>
             <ShoppingCartOutlined />
           </IconButton>
@@ -86,6 +102,7 @@ export const Header = () => {
         </Toolbar>
       </AppBar>
       <SideDrawer open={open} setOpen={setOpen} />
+      <FilterDrawer open={filterDrawer} setOpen={setFilterDrawer} />
     </div>
   );
 };
