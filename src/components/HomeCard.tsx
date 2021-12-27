@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "flex-end",
     transition: theme.transitions.create(["background", "cursor", "opacity"], {
-      duration: 1000,
+      duration: 700,
     }),
     "&:hover": {
       background: "#000",
