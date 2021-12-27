@@ -7,6 +7,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { ProductCardType } from "./types";
 import { Button, CardActions } from "@material-ui/core";
+import { useNavigate } from "react-router";
 
 const useStyles = makeStyles({
   root: {
@@ -51,6 +52,7 @@ export const ProductCard: FC<Props> = ({
   height,
 }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
 
   return (
     <Card
@@ -63,7 +65,7 @@ export const ProductCard: FC<Props> = ({
         marginBottom: marginBottom ? marginBottom : "5px",
       }}
     >
-      <CardActionArea>
+      <CardActionArea onClick={() => navigate(`/product/${title}`)}>
         <CardMedia
           component="img"
           alt={`${title} image`}

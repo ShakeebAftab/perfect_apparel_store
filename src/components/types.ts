@@ -40,3 +40,8 @@ export interface SelectorOptions {
   name?: string;
   options: string[];
 }
+
+export interface ProductType {
+  title: string;
+  img: string;
+}

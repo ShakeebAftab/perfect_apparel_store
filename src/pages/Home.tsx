@@ -9,6 +9,7 @@ import { ProductRow } from "src/components/ProductRow";
 import { bannerData } from "src/components/Banner/data.testData";
 import { HomeBanner } from "src/components/HomeBanner";
 import { Footer } from "src/components/Footer";
+import { productCardData } from "src/components/ProductCard.testData";
 
 const useStyles = makeStyles((theme: Theme) => ({
   slider: {
@@ -54,7 +55,7 @@ export const Home = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <ProductRow />
+          <ProductRow productCardData={productCardData} />
         </Grid>
         <Grid item xs={12}>
           <Footer />

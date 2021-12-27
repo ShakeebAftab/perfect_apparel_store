@@ -2,12 +2,11 @@ import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { FC } from "react";
 import { ProductCard } from "./ProductCard";
-import { productCardData } from "./ProductCard.testData";
 import { ProductCardType } from "./types";
 
 const useStyles = makeStyles({
   title: {
-    textAlign: "center",
+    marginLeft: "30px",
     marginTop: "20px",
   },
 
@@ -24,9 +23,10 @@ const useStyles = makeStyles({
 
 interface Props {
   title?: string;
+  productCardData: ProductCardType[];
 }
 
-export const ProductRow: FC<Props> = ({ title }) => {
+export const ProductRow: FC<Props> = ({ title, productCardData }) => {
   const classes = useStyles();
   return (
     <Box display="flex" flexDirection="column">

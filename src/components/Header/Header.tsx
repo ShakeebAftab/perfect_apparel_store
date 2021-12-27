@@ -48,9 +48,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface Props {
   categoryPage?: boolean;
+  productPage?: boolean;
 }
 
-export const Header: FC<Props> = ({ categoryPage }) => {
+export const Header: FC<Props> = ({ categoryPage, productPage }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => setOpen(true);
@@ -70,7 +71,7 @@ export const Header: FC<Props> = ({ categoryPage }) => {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-        color={show ? "primary" : "transparent"}
+        color={productPage ? "primary" : show ? "primary" : "transparent"}
         elevation={0}
       >
         <Toolbar variant="dense">
