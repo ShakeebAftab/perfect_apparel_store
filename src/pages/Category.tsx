@@ -38,10 +38,11 @@ export const Category = () => {
                 title={title}
                 img={img}
                 price={price}
-                height="200px"
+                height="300px"
                 margin="5px"
                 marginTop="0px"
                 marginBottom="0px"
+                width="350px"
               />
             </Grid>
           )
