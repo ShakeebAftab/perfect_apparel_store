@@ -30,6 +30,10 @@ const useStyles = makeStyles({
     paddingTop: "8px",
     paddingLeft: "18px",
     paddingBottom: "16px",
+    paddingRight: "18px",
+  },
+  btn: {
+    borderRadius: 50,
   },
 });
 
@@ -90,17 +94,20 @@ export const ProductCard: FC<Props> = ({
       <CardActions className={classes.cardAction}>
         <Button
           size="small"
-          color="secondary"
-          variant="outlined"
+          variant="contained"
           disableElevation
+          fullWidth
+          className={classes.btn}
         >
           Buy Now
         </Button>
         <Button
           size="small"
-          color="secondary"
+          color="inherit"
           disableElevation
           variant="outlined"
+          fullWidth
+          className={classes.btn}
         >
           Add to cart
         </Button>
