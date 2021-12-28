@@ -13,6 +13,7 @@ import { productCardData } from "../ProductCard.testData";
 import { ProductRow } from "../ProductRow";
 import { QuantityCounter } from "./QuantityCounter";
 import { ProductType } from "../types";
+import { Picture } from "./Picture";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -21,24 +22,6 @@ const useStyles = makeStyles(() =>
       paddingTop: "70px",
     },
   })
-);
-
-const Picture: FC<Omit<ProductType, "price">> = ({ title, img }) => (
-  <Box maxHeight="500px" minHeight="500px" display="flex">
-    <Box overflow="hidden" minWidth="300px" minHeight="500px">
-      <img
-        src={img}
-        alt={title}
-        style={{
-          objectFit: "cover",
-          height: "100%",
-          width: "100%",
-          objectPosition: "center center",
-          borderRadius: 25,
-        }}
-      />
-    </Box>
-  </Box>
 );
 
 export const Product: FC<ProductType> = ({ title, img, price }) => {
