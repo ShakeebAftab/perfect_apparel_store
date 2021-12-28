@@ -1,10 +1,14 @@
 import { Box, Grid, Typography } from "@material-ui/core";
+import { Mail, Phone } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import { SocialMedia } from "./SocialMedia";
 
 const useStyles = makeStyles({
   box: {
     background: "#171717",
+  },
+  icon: {
+    marginRight: "5px",
   },
 });
 
@@ -25,10 +29,16 @@ export const Footer = () => {
             textAlign="center"
           >
             <Typography variant="h6">Perfect Apparel</Typography>
-            <Typography variant="body2">
-              This is a address line so it is representing the address line
-            </Typography>
-            <Typography variant="body2">+92 321xxxxxxx</Typography>
+            <Box display="flex">
+              <Mail className={classes.icon} />
+              <Typography variant="body2">
+                perfectapparelstore@gmail.com
+              </Typography>
+            </Box>
+            <Box display="flex">
+              <Phone className={classes.icon} />
+              <Typography variant="body2">+92-322-4885-948</Typography>
+            </Box>
           </Box>
           <Box display="flex" flexDirection="column" alignItems="center">
             <SocialMedia padding="0" />
