@@ -49,6 +49,7 @@ export const ProductRow: FC<Props> = ({ title, productCardData }) => {
               img={img}
               price={price}
               margin="15px"
+              width="325px"
             />
           )
         )}

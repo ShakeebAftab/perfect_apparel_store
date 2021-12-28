@@ -1,10 +1,15 @@
 import { Box, Grid } from "@material-ui/core";
+import { useEffect } from "react";
 import { Footer } from "src/components/Footer";
 import { Header } from "src/components/Header/Header";
-import { Product as ProductComponent } from "src/components/Product";
+import { Product as ProductComponent } from "src/components/Product/Product";
 import { productData } from "./ProductPage.testData";
 
 export const Product = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box overflow="hidden">
       <Grid container spacing={0} alignItems="center" justifyContent="center">
@@ -12,7 +17,11 @@ export const Product = () => {
           <Header productPage />
         </Grid>
         <Grid item xs={12}>
-          <ProductComponent title={productData.title} img={productData.img} />
+          <ProductComponent
+            title={productData.title}
+            img={productData.img}
+            price={productData.price}
+          />
         </Grid>
         <Grid item xs={12}>
           <Footer />

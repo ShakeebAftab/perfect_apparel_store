@@ -44,4 +44,5 @@ export interface SelectorOptions {
 export interface ProductType {
   title: string;
   img: string;
+  price: number;
 }
