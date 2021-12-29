@@ -10,6 +10,7 @@ import { bannerData } from "src/components/Banner/data.testData";
 import { HomeBanner } from "src/components/HomeBanner";
 import { Footer } from "src/components/Footer";
 import { productCardData } from "src/components/ProductCard.testData";
+import { useEffect } from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   slider: {
@@ -21,6 +22,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export const Home = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box overflow="hidden">
       <Grid container spacing={0} alignItems="center" justifyContent="center">
