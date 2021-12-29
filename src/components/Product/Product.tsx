@@ -70,7 +70,7 @@ export const Product: FC<ProductType> = ({
     <Box overflow="hidden">
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={2} justifyContent="center">
-          <Grid item xs={12} sm={6} style={{ height: `${height}px` }}>
+          <Grid item xs={12} md={6} style={{ height: `${height}px` }}>
             <Carousel
               animation="slide"
               indicators={false}
@@ -88,7 +88,7 @@ export const Product: FC<ProductType> = ({
               ))}
             </Carousel>
           </Grid>
-          <Grid item xs={12} sm={4} ref={ref}>
+          <Grid item xs={12} md={4} ref={ref}>
             <Box minHeight="100%" maxHeight="100%" height="100%">
               <Paper className={classes.paper}>
                 <Grid container spacing={2}>
