@@ -9,12 +9,18 @@ import {
   Typography,
   Box,
 } from "@material-ui/core";
-import { LineStyle, Menu, ShoppingCartOutlined } from "@material-ui/icons";
+import {
+  LineStyle,
+  Menu,
+  Search,
+  ShoppingCartOutlined,
+} from "@material-ui/icons";
 import { SideDrawer } from "./SideDrawer";
 import { FilterDrawer } from "./FilterDrawer";
 
 import logo from "../../static/logo.png";
 import { useNavigate } from "react-router";
+import { SearchModal } from "./SearchModal";
 
 const drawerWidth = 240;
 
@@ -44,8 +50,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: "none",
     },
     iconButton: {
-      marginLeft: "2px",
-      marginRight: "2px",
+      marginLeft: "1px",
+      marginRight: "1px",
     },
     logo: {
       width: "100%",
@@ -71,6 +77,7 @@ export const Header: FC<Props> = ({ categoryPage, productPage }) => {
   const handleDrawerOpen = () => setOpen(true);
   const [show, setShow] = useState(false);
   const [filterDrawer, setFilterDrawer] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -108,6 +115,14 @@ export const Header: FC<Props> = ({ categoryPage, productPage }) => {
               color="inherit"
               edge="end"
               className={classes.iconButton}
+              onClick={() => setSearchOpen(true)}
+            >
+              <Search />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              edge="end"
+              className={classes.iconButton}
             >
               <ShoppingCartOutlined />
             </IconButton>
@@ -125,6 +140,7 @@ export const Header: FC<Props> = ({ categoryPage, productPage }) => {
       </AppBar>
       <SideDrawer open={open} setOpen={setOpen} />
       <FilterDrawer open={filterDrawer} setOpen={setFilterDrawer} />
+      <SearchModal open={searchOpen} setOpen={setSearchOpen} />
     </div>
   );
 };
