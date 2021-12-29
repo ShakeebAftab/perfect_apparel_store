@@ -43,6 +43,8 @@ export interface SelectorOptions {
 
 export interface ProductType {
   title: string;
-  img: string;
+  imgs: string[];
   price: number;
+  desc: string;
+  bullets: string[];
 }

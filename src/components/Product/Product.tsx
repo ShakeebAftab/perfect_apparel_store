@@ -5,15 +5,18 @@ import {
   Typography,
   Paper,
   Button,
+  useTheme,
+  useMediaQuery,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { FC } from "react";
+import { FC, useLayoutEffect, useRef, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import { productCardData } from "../ProductCard.testData";
 import { ProductRow } from "../ProductRow";
 import { QuantityCounter } from "./QuantityCounter";
 import { ProductType } from "../types";
 import { Picture } from "./Picture";
+import { SizeSelector } from "./SizeSelector";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -21,37 +24,71 @@ const useStyles = makeStyles(() =>
       padding: "20px",
       paddingTop: "70px",
     },
+    slider: {
+      height: "100%",
+    },
+    ul: {
+      margin: 0,
+      padding: 0,
+      paddingLeft: "15px",
+    },
+    btn: {
+      borderRadius: 50,
+    },
+    box: {
+      background: "#303030",
+    },
+    paper: {
+      padding: "40px",
+      height: "100%",
+      borderRadius: 25,
+    },
   })
 );
 
-export const Product: FC<ProductType> = ({ title, img, price }) => {
+export const Product: FC<ProductType> = ({
+  title,
+  imgs,
+  price,
+  desc,
+  bullets,
+}) => {
   const classes = useStyles();
+  const theme = useTheme();
+  const breakpoint = useMediaQuery(theme.breakpoints.only("xs"));
+  const ref = useRef<any>();
+  const [height, setHeight] = useState(0);
+
+  useLayoutEffect(() => {
+    if (breakpoint) return setHeight(600);
+    setHeight(ref.current.clientHeight < 600 ? 600 : ref.current.clientHeight);
+  }, [breakpoint]);
+
   return (
     <Box overflow="hidden">
       <Container maxWidth="lg" className={classes.container}>
         <Grid container spacing={2} justifyContent="center">
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6} style={{ height: `${height}px` }}>
             <Carousel
               animation="slide"
               indicators={false}
               autoPlay={false}
               navButtonsAlwaysVisible
+              className={classes.slider}
             >
-              <Picture img={img} title={title} />
-              <Picture img={img} title={title} />
-              <Picture img={img} title={title} />
-              <Picture img={img} title={title} />
+              {imgs.map((img: string, idx: number) => (
+                <Picture
+                  key={`${idx}`}
+                  img={img}
+                  title={title}
+                  height={`${height - 20}px`}
+                />
+              ))}
             </Carousel>
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={4} ref={ref}>
             <Box minHeight="100%" maxHeight="100%" height="100%">
-              <Paper
-                style={{
-                  padding: "40px",
-                  height: "100%",
-                  borderRadius: 25,
-                }}
-              >
+              <Paper className={classes.paper}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} style={{ paddingLeft: "15px" }}>
                     <Typography variant="h4">{title}</Typography>
@@ -59,16 +96,22 @@ export const Product: FC<ProductType> = ({ title, img, price }) => {
                   </Grid>
                   <Grid item xs={12}>
                     <Box
-                      style={{ background: "#303030" }}
+                      className={classes.box}
                       p="20px"
                       borderRadius={20}
                       overflow="hidden"
+                      minHeight={breakpoint ? "0px" : "200px"}
                     >
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Perspiciatis ipsum harum quae a blanditiis fugit pariatur
-                      deserunt libero. Quaerat sunt neque natus nulla minima
-                      obcaecati asperiores delectus culpa saepe quos.
+                      {desc}
+                      <ul className={classes.ul}>
+                        {bullets.map((bullet: string, idx: number) => (
+                          <li key={`${idx}`}>{bullet}</li>
+                        ))}
+                      </ul>
                     </Box>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <SizeSelector />
                   </Grid>
                   <Grid item xs={12}>
                     <QuantityCounter />
@@ -77,7 +120,7 @@ export const Product: FC<ProductType> = ({ title, img, price }) => {
                     <Button
                       variant="contained"
                       fullWidth
-                      style={{ borderRadius: 50 }}
+                      className={classes.btn}
                     >
                       Add To Cart
                     </Button>
@@ -86,7 +129,7 @@ export const Product: FC<ProductType> = ({ title, img, price }) => {
                     <Button
                       variant="contained"
                       fullWidth
-                      style={{ borderRadius: 50 }}
+                      className={classes.btn}
                     >
                       Buy Now
                     </Button>

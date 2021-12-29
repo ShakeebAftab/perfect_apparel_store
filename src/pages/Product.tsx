@@ -19,8 +19,10 @@ export const Product = () => {
         <Grid item xs={12}>
           <ProductComponent
             title={productData.title}
-            img={productData.img}
+            imgs={productData.imgs}
             price={productData.price}
+            desc={productData.desc}
+            bullets={productData.bullets}
           />
         </Grid>
         <Grid item xs={12}>
