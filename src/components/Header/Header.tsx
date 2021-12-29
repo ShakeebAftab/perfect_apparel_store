@@ -5,12 +5,16 @@ import {
   AppBar,
   Toolbar,
   CssBaseline,
-  Typography,
   IconButton,
+  Typography,
+  Box,
 } from "@material-ui/core";
 import { LineStyle, Menu, ShoppingCartOutlined } from "@material-ui/icons";
 import { SideDrawer } from "./SideDrawer";
 import { FilterDrawer } from "./FilterDrawer";
+
+import logo from "../../static/logo.png";
+import { useNavigate } from "react-router";
 
 const drawerWidth = 240;
 
@@ -43,6 +47,16 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: "2px",
       marginRight: "2px",
     },
+    logo: {
+      width: "100%",
+      height: "40px",
+      objectFit: "contain",
+      paddingTop: "5px",
+    },
+    toolBar: {
+      justifyContent: "space-between",
+      cursor: "pointer",
+    },
   })
 );
 
@@ -57,6 +71,7 @@ export const Header: FC<Props> = ({ categoryPage, productPage }) => {
   const handleDrawerOpen = () => setOpen(true);
   const [show, setShow] = useState(false);
   const [filterDrawer, setFilterDrawer] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.addEventListener("scroll", () => setShow(window.scrollY > 100));
@@ -74,32 +89,38 @@ export const Header: FC<Props> = ({ categoryPage, productPage }) => {
         color={productPage ? "primary" : show ? "primary" : "transparent"}
         elevation={0}
       >
-        <Toolbar variant="dense">
-          <Typography variant="h6" noWrap className={classes.title}>
-            Perfect Apparel
+        <Toolbar variant="dense" className={classes.toolBar}>
+          <Typography onClick={() => navigate("/")}>
+            <img src={logo} alt={logo} className={classes.logo} />
           </Typography>
-          {categoryPage && (
+          <Box>
+            {categoryPage && (
+              <IconButton
+                color="inherit"
+                edge="end"
+                className={classes.iconButton}
+                onClick={() => setFilterDrawer(true)}
+              >
+                <LineStyle />
+              </IconButton>
+            )}
             <IconButton
               color="inherit"
               edge="end"
               className={classes.iconButton}
-              onClick={() => setFilterDrawer(true)}
             >
-              <LineStyle />
+              <ShoppingCartOutlined />
             </IconButton>
-          )}
-          <IconButton color="inherit" edge="end" className={classes.iconButton}>
-            <ShoppingCartOutlined />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.iconButton, open && classes.hide)}
-          >
-            <Menu />
-          </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="end"
+              onClick={handleDrawerOpen}
+              className={clsx(classes.iconButton, open && classes.hide)}
+            >
+              <Menu />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
       <SideDrawer open={open} setOpen={setOpen} />

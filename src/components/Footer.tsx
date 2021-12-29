@@ -3,6 +3,8 @@ import { Mail, Phone } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/styles";
 import { SocialMedia } from "./SocialMedia";
 
+import logo from "../static/logo.png";
+
 const useStyles = makeStyles({
   box: {
     background: "#171717",
@@ -10,13 +12,24 @@ const useStyles = makeStyles({
   icon: {
     marginRight: "5px",
   },
+  logo: {
+    width: "100%",
+    height: "40px",
+    objectFit: "contain",
+  },
 });
 
 export const Footer = () => {
   const classes = useStyles();
   return (
-    <Box overflow="hidden" padding="30px" className={classes.box}>
-      <Grid container spacing={2} alignItems="center" justifyContent="center">
+    <Box
+      overflow="hidden"
+      padding="30px"
+      paddingBottom="10px"
+      paddingTop="15px"
+      className={classes.box}
+    >
+      <Grid container spacing={1} alignItems="center" justifyContent="center">
         <Grid item xs={12}>
           <Box
             p="15px"
@@ -28,7 +41,9 @@ export const Footer = () => {
             alignItems="center"
             textAlign="center"
           >
-            <Typography variant="h6">Perfect Apparel</Typography>
+            <Typography>
+              <img src={logo} alt={logo} className={classes.logo} />
+            </Typography>
             <Box display="flex">
               <Mail className={classes.icon} />
               <Typography variant="body2">
