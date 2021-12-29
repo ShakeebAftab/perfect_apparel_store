@@ -1,5 +1,5 @@
 import { createTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
-import { yellow } from "@material-ui/core/colors";
+// import { yellow } from "@material-ui/core/colors";
 import {
   createContext,
   Dispatch,
@@ -31,7 +31,8 @@ export const ThemeContextProvider: FC<Props> = ({ children }) => {
         main: "#171717",
       },
       secondary: {
-        main: yellow[700],
+        // main: yellow[700],
+        main: "#ccc",
       },
     },
     overrides: {
