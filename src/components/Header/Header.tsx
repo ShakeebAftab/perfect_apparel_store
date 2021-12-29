@@ -52,10 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
       height: "40px",
       objectFit: "contain",
       paddingTop: "5px",
+      cursor: "pointer",
     },
     toolBar: {
       justifyContent: "space-between",
-      cursor: "pointer",
     },
   })
 );
