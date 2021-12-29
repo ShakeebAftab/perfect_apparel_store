@@ -16,7 +16,8 @@ import { ProductRow } from "../ProductRow";
 import { QuantityCounter } from "./QuantityCounter";
 import { ProductType } from "../types";
 import { Picture } from "./Picture";
-import { SizeSelector } from "./SizeSelector";
+import { Selector } from "../Header/Selector";
+import { sizeOptionsData } from "../Header/FilterDrawer.testData";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -56,6 +57,7 @@ export const Product: FC<ProductType> = ({
   const classes = useStyles();
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.only("xs"));
+  const [size, setSize] = useState(sizeOptionsData[0]);
   const ref = useRef<any>();
   const [height, setHeight] = useState(0);
 
@@ -111,7 +113,12 @@ export const Product: FC<ProductType> = ({
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
-                    <SizeSelector />
+                    <Selector
+                      options={sizeOptionsData}
+                      value={size}
+                      setValue={setSize}
+                      radius={50}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     <QuantityCounter />
