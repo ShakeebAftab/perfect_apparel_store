@@ -16,7 +16,7 @@ import {
   colorOptionsData,
   priceOptionsData,
   sizeOptionsData,
-} from "./FilterDrawer.testData";
+} from "../../HardCoded/data";
 import { Selector } from "./Selector";
 
 const drawerWidth = 240;
@@ -76,9 +76,9 @@ export const FilterDrawer: FC<Props> = ({ open, setOpen }) => {
   const classes = useStyles();
   const theme = useTheme();
   const handleDrawerClose = () => setOpen(false);
-  const [value, setValue] = useState<string>(colorOptionsData[0]);
-  const [size, setSize] = useState(sizeOptionsData[0]);
-  const [price, setPrice] = useState(priceOptionsData[0]);
+  const [value, setValue] = useState(colorOptionsData[0].value);
+  const [size, setSize] = useState(sizeOptionsData[0].value);
+  const [price, setPrice] = useState(priceOptionsData[0].value);
 
   return (
     <Drawer
@@ -104,6 +104,7 @@ export const FilterDrawer: FC<Props> = ({ open, setOpen }) => {
             options={colorOptionsData}
             value={value}
             setValue={setValue}
+            radius={50}
           />
         </ListItem>
         <ListItem>
@@ -112,6 +113,7 @@ export const FilterDrawer: FC<Props> = ({ open, setOpen }) => {
             options={sizeOptionsData}
             value={size}
             setValue={setSize}
+            radius={50}
           />
         </ListItem>
         <ListItem>
@@ -120,6 +122,7 @@ export const FilterDrawer: FC<Props> = ({ open, setOpen }) => {
             options={priceOptionsData}
             value={price}
             setValue={setPrice}
+            radius={50}
           />
         </ListItem>
       </List>
