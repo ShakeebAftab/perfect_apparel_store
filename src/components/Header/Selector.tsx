@@ -1,11 +1,33 @@
-import { Box, Grid, MenuItem, TextField, Typography } from "@material-ui/core";
-import { Dispatch, FC } from "react";
-import { SelectorOptions } from "../types";
+import {
+  Box,
+  createStyles,
+  Grid,
+  makeStyles,
+  MenuItem,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { Dispatch, FC, SetStateAction } from "react";
+import { SelectorOptions, SelectorOptionType } from "../types";
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    textField: {
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          border: "none",
+        },
+      },
+    },
+    empty: {},
+  })
+);
 
 interface Props extends SelectorOptions {
   value: string;
-  setValue: Dispatch<string>;
+  setValue: Dispatch<SetStateAction<string>>;
   radius?: number;
+  border?: boolean;
 }
 
 export const Selector: FC<Props> = ({
@@ -14,7 +36,9 @@ export const Selector: FC<Props> = ({
   value,
   setValue,
   radius,
+  border,
 }) => {
+  const classes = useStyles();
   return (
     <Box width="100%" borderRadius={radius}>
       <Grid container spacing={1}>
@@ -32,16 +56,28 @@ export const Selector: FC<Props> = ({
             size="small"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            style={{ borderRadius: radius }}
+            style={{
+              borderRadius: radius,
+              background: "#303030",
+              padding: border ? "5px" : "0px",
+            }}
             SelectProps={{
               style: {
                 borderRadius: radius,
+                background: "#303030",
+              },
+              SelectDisplayProps: {
+                style: {
+                  background: "#303030",
+                  borderRadius: radius,
+                },
               },
             }}
+            className={border ? classes.textField : classes.empty}
           >
-            {options.map((opt: string) => (
-              <MenuItem key={opt} value={opt}>
-                {opt}
+            {options.map(({ key, value }: SelectorOptionType) => (
+              <MenuItem key={key} value={value}>
+                {key}
               </MenuItem>
             ))}
           </TextField>

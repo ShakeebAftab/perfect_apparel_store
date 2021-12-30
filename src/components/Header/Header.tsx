@@ -74,15 +74,22 @@ interface Props {
 export const Header: FC<Props> = ({ categoryPage, productPage }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const handleDrawerOpen = () => setOpen(true);
   const [show, setShow] = useState(false);
   const [filterDrawer, setFilterDrawer] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
   const navigate = useNavigate();
+  const handleDrawerOpen = () => setOpen(true);
 
   useEffect(() => {
     window.addEventListener("scroll", () => setShow(window.scrollY > 100));
-    return window.removeEventListener("scroll", () => {});
+    return () => {
+      window.removeEventListener("scroll", () => {});
+      setOpen(false);
+      setFilterDrawer(false);
+      setSearchOpen(false);
+      setShow(false);
+    };
   }, []);
 
   return (
@@ -90,9 +97,7 @@ export const Header: FC<Props> = ({ categoryPage, productPage }) => {
       <CssBaseline />
       <AppBar
         position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}
+        className={classes.appBar}
         color={productPage ? "primary" : show ? "primary" : "transparent"}
         elevation={0}
       >
