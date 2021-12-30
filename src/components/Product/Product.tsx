@@ -17,7 +17,7 @@ import { QuantityCounter } from "./QuantityCounter";
 import { ProductType } from "../types";
 import { Picture } from "./Picture";
 import { Selector } from "../Header/Selector";
-import { sizeOptionsData } from "../Header/FilterDrawer.testData";
+import { availableSizes } from "../../HardCoded/data";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -35,6 +35,7 @@ const useStyles = makeStyles(() =>
     },
     btn: {
       borderRadius: 50,
+      fontWeight: 600,
     },
     box: {
       background: "#303030",
@@ -57,7 +58,7 @@ export const Product: FC<ProductType> = ({
   const classes = useStyles();
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.only("xs"));
-  const [size, setSize] = useState(sizeOptionsData[0]);
+  const [size, setSize] = useState(availableSizes[0].value);
   const ref = useRef<any>();
   const [height, setHeight] = useState(0);
 
@@ -112,12 +113,31 @@ export const Product: FC<ProductType> = ({
                       </ul>
                     </Box>
                   </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      className={classes.btn}
+                    >
+                      Size Chart
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Button
+                      variant="outlined"
+                      fullWidth
+                      className={classes.btn}
+                    >
+                      Reviews
+                    </Button>
+                  </Grid>
                   <Grid item xs={12}>
                     <Selector
-                      options={sizeOptionsData}
+                      options={availableSizes}
                       value={size}
                       setValue={setSize}
                       radius={50}
+                      border
                     />
                   </Grid>
                   <Grid item xs={12}>
