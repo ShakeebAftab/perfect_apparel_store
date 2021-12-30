@@ -31,7 +31,6 @@ export const ThemeContextProvider: FC<Props> = ({ children }) => {
         main: "#171717",
       },
       secondary: {
-        // main: yellow[700],
         main: "#ccc",
       },
     },
@@ -49,6 +48,11 @@ export const ThemeContextProvider: FC<Props> = ({ children }) => {
             backgroundColor: "#707070",
             borderRadius: 5,
           },
+        },
+      },
+      MuiMenu: {
+        paper: {
+          borderRadius: 25,
         },
       },
     },
