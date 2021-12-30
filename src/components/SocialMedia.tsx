@@ -10,7 +10,11 @@ interface Props {
 export const SocialMedia: FC<Props> = ({ padding }) => {
   return (
     <Box padding={padding ? padding : "15px"} overflow="hidden">
-      <IconButton>
+      <IconButton
+        onClick={() =>
+          window.open("https://www.facebook.com/PerfectApperalPK/", "_blank")
+        }
+      >
         <Facebook />
       </IconButton>
       <IconButton>
