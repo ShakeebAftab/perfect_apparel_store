@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       position: "absolute",
       width: "370px",
-      maxHeight: "50vh",
+      maxHeight: "55vh",
       overflow: "auto",
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
