@@ -34,6 +34,7 @@ const useStyles = makeStyles({
   },
   btn: {
     borderRadius: 50,
+    fontWeight: 600,
   },
 });
 

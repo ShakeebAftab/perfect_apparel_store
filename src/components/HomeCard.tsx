@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: "30px",
     paddingRight: "30px",
     marginBottom: "60px",
+    borderRadius: 25,
   },
   box: {
     height: "400px",

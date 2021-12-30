@@ -26,6 +26,8 @@ const useStyles = makeStyles(() => ({
     paddingRight: "1.5rem",
     marginRight: "1rem",
     backgroundColor: "rgba(51, 51, 51, 0.5)",
+    borderRadius: 25,
+    fontWeight: 600,
     "&:hover": {
       color: "black",
     },

@@ -11,9 +11,13 @@ const useStyles = makeStyles(() => ({
   },
   buttonOne: {
     marginRight: "5px",
+    borderRadius: 25,
+    fontWeight: 600,
   },
   buttonTwo: {
     marginLeft: "5px",
+    borderRadius: 25,
+    fontWeight: 600,
   },
 }));
 
@@ -63,7 +67,7 @@ export const HomeBanner: FC<HomeBannerType> = ({
             <Button
               variant="contained"
               color="secondary"
-              className={classes.buttonTwo}
+              className={classes.buttonOne}
             >
               {buttonOneText}
             </Button>
