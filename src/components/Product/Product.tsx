@@ -9,15 +9,16 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { FC, useLayoutEffect, useRef, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import Carousel from "react-material-ui-carousel";
-import { productCardData } from "../ProductCard.testData";
 import { ProductRow } from "../ProductRow";
 import { QuantityCounter } from "./QuantityCounter";
 import { ProductType } from "../types";
 import { Picture } from "./Picture";
 import { Selector } from "../Header/Selector";
 import { availableSizes } from "../../HardCoded/data";
+import { CartContext } from "src/providers/CartContext";
+import { productData } from "src/pages/ProductPage.testData";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -49,6 +50,7 @@ const useStyles = makeStyles(() =>
 );
 
 export const Product: FC<ProductType> = ({
+  id,
   title,
   imgs,
   price,
@@ -58,14 +60,29 @@ export const Product: FC<ProductType> = ({
   const classes = useStyles();
   const theme = useTheme();
   const breakpoint = useMediaQuery(theme.breakpoints.only("xs"));
-  const [size, setSize] = useState(availableSizes[0].value);
   const ref = useRef<any>();
   const [height, setHeight] = useState(0);
+  const { addNewProduct } = useContext(CartContext);
+  const [size, setSize] = useState(availableSizes[0].value);
+  const [quantity, setQuantity] = useState(1);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (breakpoint) return setHeight(600);
     setHeight(ref.current.clientHeight < 600 ? 600 : ref.current.clientHeight);
   }, [breakpoint]);
+
+  const handleAddToCart = () => {
+    addNewProduct({
+      id,
+      title,
+      imgs,
+      price,
+      desc,
+      bullets,
+      quantity,
+      size,
+    });
+  };
 
   return (
     <Box overflow="hidden">
@@ -141,13 +158,14 @@ export const Product: FC<ProductType> = ({
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <QuantityCounter />
+                    <QuantityCounter value={quantity} setValue={setQuantity} />
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Button
                       variant="contained"
                       fullWidth
                       className={classes.btn}
+                      onClick={() => handleAddToCart()}
                     >
                       Add To Cart
                     </Button>
@@ -167,7 +185,7 @@ export const Product: FC<ProductType> = ({
           </Grid>
         </Grid>
       </Container>
-      <ProductRow title="Similar Products" productCardData={productCardData} />
+      <ProductRow title="Similar Products" productCardData={productData} />
     </Box>
   );
 };

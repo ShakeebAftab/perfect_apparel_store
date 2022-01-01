@@ -1,6 +1,6 @@
 import { Box } from "@material-ui/core";
 import { createStyles, makeStyles } from "@material-ui/styles";
-import { useState } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -17,9 +17,13 @@ const useStyles = makeStyles(() =>
   })
 );
 
-export const QuantityCounter = () => {
+interface Props {
+  value: number;
+  setValue: Dispatch<SetStateAction<number>>;
+}
+
+export const QuantityCounter: FC<Props> = ({ value, setValue }) => {
   const classes = useStyles();
-  const [value, setValue] = useState(1);
 
   return (
     <Box
