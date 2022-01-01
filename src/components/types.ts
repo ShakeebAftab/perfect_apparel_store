@@ -7,24 +7,11 @@ export interface MenuOpt {
   path?: string;
 }
 
-export interface BannerType {
-  title: string;
-  desc: string;
-  img: string;
-}
-
 export interface HomeCardType {
   category: string;
   img: string;
   path: string;
 }
-
-export interface ProductCardType {
-  title: string;
-  img: string;
-  price: number;
-}
-
 export interface HomeBannerType {
   img: string;
   title: string;
@@ -46,6 +33,7 @@ export interface SelectorOptions {
 }
 
 export interface ProductType {
+  id: string;
   title: string;
   imgs: string[];
   price: number;

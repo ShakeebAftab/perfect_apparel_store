@@ -8,8 +8,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import { FC } from "react";
-import { BannerType } from "../types";
+import { FC, useState } from "react";
+import { useNavigate } from "react-router";
+import { OptionsModal } from "../ProductCard/OptionsModal";
+import { ProductType } from "../types";
 
 const useStyles = makeStyles(() => ({
   fadeOut: {
@@ -34,11 +36,34 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const Banner: FC<BannerType> = ({ title, desc, img }) => {
+export const Banner: FC<ProductType> = ({
+  id,
+  title,
+  desc,
+  imgs,
+  price,
+  bullets,
+}) => {
   const classes = useStyles();
 
   const theme = useTheme();
   const breakPoint = useMediaQuery(theme.breakpoints.up("xs"));
+
+  const navigate = useNavigate();
+  const [optsOpen, setOptsOpen] = useState(false);
+
+  const navi = () => {
+    navigate(`/product/${title}`, {
+      state: {
+        id,
+        title,
+        desc,
+        bullets,
+        price,
+        imgs,
+      },
+    });
+  };
 
   return (
     <Box
@@ -46,7 +71,7 @@ export const Banner: FC<BannerType> = ({ title, desc, img }) => {
       minHeight="80vh"
       maxHeight="80vh"
       style={{
-        background: `url(${img})`,
+        background: `url(${imgs[0]})`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
         objectFit: "contain",
@@ -67,10 +92,18 @@ export const Banner: FC<BannerType> = ({ title, desc, img }) => {
                     </Typography>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained" className={classes.button}>
+                    <Button
+                      variant="contained"
+                      className={classes.button}
+                      onClick={() => navi()}
+                    >
                       View
                     </Button>
-                    <Button variant="contained" className={classes.button}>
+                    <Button
+                      variant="contained"
+                      className={classes.button}
+                      onClick={() => setOptsOpen(true)}
+                    >
                       Add To Cart
                     </Button>
                   </Grid>
@@ -91,6 +124,16 @@ export const Banner: FC<BannerType> = ({ title, desc, img }) => {
           </Grid>
         </Grid>
       </Box>
+      <OptionsModal
+        open={optsOpen}
+        setOpen={setOptsOpen}
+        id={id}
+        title={title}
+        price={price}
+        desc={desc}
+        bullets={bullets}
+        imgs={imgs}
+      />
     </Box>
   );
 };

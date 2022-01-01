@@ -1,8 +1,8 @@
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import { FC } from "react";
-import { ProductCard } from "./ProductCard";
-import { ProductCardType } from "./types";
+import { ProductCard } from "./ProductCard/ProductCard";
+import { ProductType } from "./types";
 
 const useStyles = makeStyles({
   title: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 interface Props {
   title?: string;
-  productCardData: ProductCardType[];
+  productCardData: ProductType[];
 }
 
 export const ProductRow: FC<Props> = ({ title, productCardData }) => {
@@ -42,12 +42,18 @@ export const ProductRow: FC<Props> = ({ title, productCardData }) => {
       )}
       <Box className={classes.products}>
         {productCardData.map(
-          ({ title, img, price }: ProductCardType, idx: number) => (
+          (
+            { id, title, imgs, price, desc, bullets }: ProductType,
+            idx: number
+          ) => (
             <ProductCard
               key={`${idx}`}
+              id={id}
               title={title}
-              img={img}
+              imgs={imgs}
               price={price}
+              desc={desc}
+              bullets={bullets}
               margin="15px"
               width="325px"
             />

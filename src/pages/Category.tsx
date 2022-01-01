@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { bannerData } from "src/components/Banner/data.testData";
 import { Slider } from "src/components/Banner/Slider";
 import { Footer } from "src/components/Footer";
-import { ProductCard } from "src/components/ProductCard";
-import { productCardData } from "src/components/ProductCard.testData";
-import { ProductCardType } from "src/components/types";
+import { ProductCard } from "src/components/ProductCard/ProductCard";
+import { ProductType } from "src/components/types";
 import { Header } from "../components/Header/Header";
+import { productData } from "./ProductPage.testData";
 
 const useStyles = makeStyles((theme: Theme) => ({
   slider: {
@@ -31,13 +31,19 @@ export const Category = () => {
         <Grid item xs={12} className={classes.slider}>
           <Slider bannerData={bannerData} />
         </Grid>
-        {productCardData.map(
-          ({ title, img, price }: ProductCardType, idx: number) => (
+        {productData.map(
+          (
+            { id, title, imgs, price, desc, bullets }: ProductType,
+            idx: number
+          ) => (
             <Grid item key={`${idx}`}>
               <ProductCard
+                id={id}
                 title={title}
-                img={img}
+                imgs={imgs}
                 price={price}
+                desc={desc}
+                bullets={bullets}
                 height="300px"
                 margin="5px"
                 marginTop="0px"

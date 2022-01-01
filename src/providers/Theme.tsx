@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { CartContextProvider } from "./CartContext";
 
 interface ContextProps {
   isDark: boolean;
@@ -63,10 +64,12 @@ export const ThemeContextProvider: FC<Props> = ({ children }) => {
   return (
     <ThemeContext.Provider value={{ isDark, setIsDark }}>
       <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-        <BrowserRouter>
-          <CssBaseline />
-          {children}
-        </BrowserRouter>
+        <CartContextProvider>
+          <BrowserRouter>
+            <CssBaseline />
+            {children}
+          </BrowserRouter>
+        </CartContextProvider>
       </ThemeProvider>
     </ThemeContext.Provider>
   );
